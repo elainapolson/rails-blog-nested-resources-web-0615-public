@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @comment = @post.comments.build
   end
 
   def new
@@ -42,6 +44,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+
     respond_to do |format|
       format.html { redirect_to posts_url }
       format.json { head :no_content }
